@@ -81,7 +81,9 @@
         commentField.value = "Здравствуйте! Интересует «" + product + "». Подскажите, пожалуйста, стоимость.";
       }
       var request = document.getElementById("request");
-      if (request) request.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (request && request.scrollIntoView) {
+        request.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
       if (nameField) window.setTimeout(function () { nameField.focus({ preventScroll: true }); }, 600);
     });
   });
@@ -181,7 +183,7 @@
     ".catalog-grid",
     ".promo-inner",
     ".steps",
-    ".prices-grid",
+    ".prices-head, .price-table-wrap",
     ".faq-grid",
     ".contact-grid"
   ].join(", ");
