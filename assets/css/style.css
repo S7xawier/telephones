@@ -610,11 +610,32 @@ h2 {
   line-height: 1.1;
   margin-bottom: 8px;
 }
-.catalog-body p {
-  font-size: 14px;
-  line-height: 1.6;
+.catalog-type {
+  font-size: 13.5px;
+  line-height: 1.5;
   color: var(--muted);
-  margin-bottom: 18px;
+}
+.catalog-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.catalog-dims {
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+.catalog-price {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
 }
 .catalog-link {
   margin-top: auto;
@@ -758,50 +779,79 @@ h2 {
   background-position: center;
   opacity: 0.18;
 }
-.prices-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: 72px;
-  align-items: start;
+.prices-head { max-width: 68ch; }
+.prices-head h2 { margin-top: 14px; }
+.prices-head > p:not(.eyebrow) {
+  margin-top: 18px;
+  font-size: 15.5px;
+  color: rgba(247, 244, 238, 0.66);
+  max-width: 60ch;
 }
-.prices-intro h2 { margin-top: 14px; max-width: 13ch; }
-.prices-intro > p:not(.eyebrow) {
-  margin-top: 22px;
-  font-size: 16px;
-  color: rgba(247, 244, 238, 0.72);
-  max-width: 46ch;
-}
-.prices-note {
-  margin-top: 16px;
-  font-size: 13.5px;
-  color: var(--bronze-light) !important;
-}
-.prices-intro .btn { margin-top: 32px; }
 
-.price-factors {
-  border-top: 1px solid var(--line-dark);
+.price-table-wrap {
+  margin-top: 40px;
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius);
+  overflow: hidden;
 }
-.price-factors li {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 20px;
-  padding: 22px 0;
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.price-table th,
+.price-table td {
+  padding: 17px 26px;
+  text-align: left;
   border-bottom: 1px solid var(--line-dark);
 }
-.factor-num {
-  font-family: var(--serif);
-  font-size: 15px;
-  color: var(--bronze-light);
-  padding-top: 4px;
+.price-table thead th {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(247, 244, 238, 0.5);
+  background: rgba(255, 255, 255, 0.03);
 }
-.price-factors h3 {
+.price-table tbody tr:last-child td { border-bottom: 0; }
+.price-table tbody tr { transition: background-color 0.2s; }
+.price-table tbody tr:hover { background: rgba(255, 255, 255, 0.035); }
+.price-table td:first-child {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--paper);
+}
+.price-table td:nth-child(2) {
+  font-size: 13.5px;
+  color: rgba(247, 244, 238, 0.58);
+}
+.price-table th:last-child,
+.price-table td:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+.price-table td:last-child {
   font-family: var(--serif);
   font-size: 21px;
   font-weight: 600;
   color: var(--paper);
-  margin-bottom: 4px;
 }
-.price-factors p { font-size: 14px; color: rgba(247, 244, 238, 0.6); }
+.prices-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 32px;
+  margin-top: 28px;
+}
+.prices-foot p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(247, 244, 238, 0.5);
+  max-width: 60ch;
+}
+.prices-foot .btn { flex: none; }
 
 /* ---------- FAQ ---------- */
 .faq-grid {
@@ -1122,7 +1172,6 @@ h2 {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .catalog-grid { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-  .prices-grid,
   .faq-grid { gap: 48px; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
@@ -1172,10 +1221,8 @@ h2 {
   .promo-inner { grid-template-columns: 1fr; gap: 30px; padding-top: 60px; padding-bottom: 60px; }
   .promo-actions { flex-direction: row; align-items: center; gap: 24px; }
 
-  .prices-grid,
   .faq-grid,
   .contact-grid { grid-template-columns: 1fr; gap: 36px; }
-  .price-factors li { padding: 18px 0; }
   .faq-answer { padding-right: 0; }
 
   .footer-inner { grid-template-columns: 1fr; gap: 32px; }
@@ -1221,6 +1268,18 @@ h2 {
   body { padding-bottom: 68px; }
   .site-footer { padding-bottom: 0; }
 
+  .price-table thead { display: none; }
+  .price-table,
+  .price-table tbody,
+  .price-table tr,
+  .price-table td { display: block; width: 100%; }
+  .price-table tr { padding: 15px 20px; border-bottom: 1px solid var(--line-dark); }
+  .price-table tr:last-child { border-bottom: 0; }
+  .price-table td { padding: 1px 0; border: 0; }
+  .price-table td:nth-child(2) { font-size: 13px; }
+  .price-table td:last-child { text-align: left; margin-top: 3px; }
+  .prices-foot .btn { width: 100%; }
+
   .faq-item summary { font-size: 19px; padding: 20px 2px; gap: 14px; }
   .faq-icon { width: 28px; height: 28px; }
   .faq-answer { padding-left: 2px; }
@@ -1257,7 +1316,7 @@ h2 {
   body { background: #fff; color: #000; padding: 0; }
   .section { padding: 24px 0; }
   .hero { background: #fff; color: #000; }
-  .hero h1, .promo-text h2, .prices-intro h2 { color: #000; }
+  .hero h1, .promo-text h2, .prices-head h2 { color: #000; }
 }
 
 /* ---------- Служебные страницы ---------- */
