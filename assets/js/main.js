@@ -186,7 +186,9 @@
     ".prices-head, .price-table-wrap",
     ".faq-grid",
     ".contact-grid",
-    ".contacts-map"
+    ".contacts-map",
+    ".reviews-head",
+    ".reviews-grid"
   ].join(", ");
 
   /* ---------- Яндекс Карта: переключение адресов ---------- */
